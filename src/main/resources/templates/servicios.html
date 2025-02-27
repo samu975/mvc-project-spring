@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Roller Speed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.7.2/css/all.min.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div th:replace="fragments/navbar :: body"></div>
+
+    <!-- Contenido de la página -->
+    <div class="container mt-5" style="padding:170px 100px 0px 100px;">
+      <!-- Introducción -->
+      <div class="" style="max-width:1040px; margin-right:20px;">
+          <h1 class="text-primary fs-1">Nuestros Servicios</h1>
+          <p class="text-secondary-emphasis fs-3">
+              En Roller Speed, contamos con una variedad de servicios diseñados para todas las edades y niveles.
+          </p>
+      </div>
+
+      <!-- Servicios -->
+      <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom: 270px;">
+          <!-- Clases de Patinaje -->
+          <div class="col">
+              <div class="card justify-content-center text-center border-primary shadow-sm align-items-center" style="width: 340px; height: 320px; ">
+                  <div class="" style="padding:0 15px 0 15px;">
+                    <h5 class="card-title text-primary mt-3 fs-3" >Clases de Patinaje</h5>
+                    <p class="card-text fs-5">Para principiantes, intermedios y avanzados.</p>
+                    <i class="fa-solid fa-skating fa-3x text-primary"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Entrenamiento de Competencias -->
+          <div class="col">
+                <div class="card justify-content-center text-center border-success shadow-sm align-items-center" style="width: 340px; height: 320px; ">
+                  <div class="">
+                    <h5 class="card-title text-success mt-3 fs-3">Entrenamiento de Competencias</h5>
+                    <p class="card-text fs-5">Preparación para competencias locales y nacionales.</p>
+                    <i class="fa-solid fa-trophy fa-3x text-success"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Sesiones Personalizadas -->
+          <div class="col">
+               <div class="card justify-content-center text-center border-danger shadow-sm align-items-center" style="width: 340; height: 320px; ">
+                  <div class="">
+                    <h5 class="card-title text-danger mt-3 fs-3">Sesiones Personalizadas</h5>
+                    <p class="card-text fs-5">Entrenamiento con instructores especializados.</p>
+                    <i class="fa-solid fa-user fa-3x text-danger"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Cursos de Patinaje Recreativo -->
+          <div class="col">
+                <div class="card justify-content-center text-center border-warning shadow-sm align-items-center" style="width: 340; height: 320px; ">
+                  <div class="">
+                    <h5 class="card-title text-warning mt-3 fs-3">Cursos de Patinaje</h5>
+                    <p class="card-text fs-5">Patinaje recreativo y de velocidad.</p>
+                    <i class="fa-solid fa-bicycle fa-3x text-warning"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Alquiler y Asesoría -->
+          <div class="col">
+                <div class="card justify-content-center text-center border-info shadow-sm align-items-center" style="width: 340; height: 320px; ">
+                  <div class="">
+                    <h5 class="card-title text-info mt-3 fs-3">Alquiler y Asesoría</h5>
+                    <p class="card-text fs-5">Renta de equipos y orientación en compra de patines.</p>
+                    <i class="fa-solid fa-cart-shopping fa-3x text-info"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Organización de Eventos -->
+          <div class="col">
+                <div class="card justify-content-center text-center border-secondary shadow-sm align-items-center" style="width: 340; height: 320px; ">
+                  <div class="">
+                    <h5 class="card-title text-secondary mt-3 fs-3">Eventos y Exhibiciones</h5>
+                    <p class="card-text fs-5">Organización de eventos y demostraciones.</p>
+                    <i class="fa-solid fa-calendar-check fa-3x text-secondary"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores de Roller Speed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.7.2/css/all.min.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div th:replace="fragments/navbar :: body"></div>
+
+    <!-- Contenido de la página -->
+    <div class="container-fluid" style="padding:170px 300px 0px 300px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="max-width:1200px; margin-right:20px ;">
+          <h2 class="text-primary fs-1">Nuestros Valores</h2>
+          <p class="text-secondary-emphasis fs-3">En Roller Speed, nos esforzamos por mucho más que solo entrenar grandes patinadores; cultivamos personas con principios. Creemos que el verdadero éxito no solo se mide en velocidad, sino en la pasión, el compromiso y la integridad con los que afrontamos cada desafío. Por eso, nuestros valores son la base de todo lo que hacemos, guiando cada paso en nuestro camino.
+         </p>
+         <p class="text-secondary-emphasis fs-3">
+            Nos guiamos, fundamentalmente, por estos valores:
+         </p>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center" style="padding-bottom: 120px; max-width:1200px">
+        
+            <!-- Card Disciplina -->
+            <div class="col">
+                <div class="card p-4 text-white" style="background-color: #007bff; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); height: 100%; max-width:320px;">
+                    <i class="fas fa-user-check" style="font-size: 2rem; color: white; margin-bottom: 10px;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Disciplina</h5>
+                        <p class="card-text">Fomentamos el compromiso y la constancia en la práctica del patinaje.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card Trabajo en equipo -->
+            <div class="col">
+                <div class="card p-4 text-white" style="background-color: #28a745; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); height: 100%; max-width:320px">
+                    <i class="fas fa-users" style="font-size: 2rem; color: white; margin-bottom: 10px;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Trabajo en equipo</h5>
+                        <p class="card-text">Promovemos la colaboración y el apoyo mutuo entre alumnos e instructores.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card Pasión -->
+            <div class="col">
+                <div class="card p-4 text-white" style="background-color: #dc3545; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); height: 100%; max-width:320px">
+                    <i class="fas fa-heart" style="font-size: 2rem; color: white; margin-bottom: 10px;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Pasión</h5>
+                        <p class="card-text">Creemos en el patinaje como una forma de vida y transmitimos este entusiasmo a nuestros estudiantes.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card Respeto -->
+            <div class="col">
+                <div class="card p-4 text-white" style="background-color: #c59810; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); height: 100%; max-width:320px">
+                    <i class="fas fa-handshake" style="font-size: 2rem; color: white; margin-bottom: 10px;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Respeto</h5>
+                        <p class="card-text">Valoramos la diversidad y creamos un ambiente inclusivo y seguro para todos.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card Superación -->
+            <div class="col">
+                <div class="card p-4 text-white" style="background-color: #6f42c1; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); height: 100%; max-width:320px">
+                    <i class="fas fa-mountain" style="font-size: 2rem; color: white; margin-bottom: 10px;"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Superación</h5>
+                        <p class="card-text">Motivamos a nuestros alumnos a desafiarse a sí mismos y alcanzar nuevas metas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

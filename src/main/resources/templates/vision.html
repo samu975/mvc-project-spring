@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visión de Roller Speed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div th:replace="fragments/navbar :: body"></div>
+
+    <!-- Contenido de la página -->
+    <div class="container-fluid" style="padding:170px 300px 0px 300px; display:flex; justify-content: center; align-items: center; flex-direction: column;">
+      <div style="max-width:1020px; margin-bottom:40px ;">
+        <h2 class="text-primary fs-1">Nuestra Visión</h2>
+        <p class="text-secondary-emphasis fs-3">Ser la escuela de patinaje líder en Santa Marta y en la región, reconocida por su excelencia en la enseñanza, la formación de talentos deportivos y la organización de eventos de alto nivel. Aspiramos a seguir innovando en nuestros métodos de enseñanza y expandir nuestros servicios para impactar positivamente a más personas apasionadas por el patinaje.</p>
+      </div>
+      <div style="max-width:1020px; margin-top: 40px; margin-bottom: 120px;">
+        <img th:src="@{/img/patinaje2.jpeg}" alt="Imagen de patinaje" class="img-fluid">
+      </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>
