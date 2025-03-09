@@ -1,7 +1,8 @@
 package com.rollerspeed.rollerspeed.controller;
 
 import com.rollerspeed.rollerspeed.model.Instructor;
-import com.rollerspeed.rollerspeed.repository.InstructorRepository;
+import com.rollerspeed.rollerspeed.service.InstructorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,11 @@ import java.util.List;
 public class InstructorController {
 
     @Autowired
-    private InstructorRepository instructorRepository;
+    private InstructorService instructorService;
 
     @GetMapping
     public String listInstructors(Model model) {
-        List<Instructor> instructors = instructorRepository.findAll();
+        List<Instructor> instructors = instructorService.getAllInstructors();
         model.addAttribute("instructors", instructors);
         return "instructors/list";
     }
@@ -31,13 +32,13 @@ public class InstructorController {
 
     @PostMapping("/register")
     public String registerInstructor(@ModelAttribute Instructor instructor) {
-        instructorRepository.save(instructor);
+        instructorService.saveInstructor(instructor);
         return "redirect:/instructors";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteInstructor(@PathVariable Long id) {
-        instructorRepository.deleteById(id);
+        instructorService.deleteInstructor(id);
         return "redirect:/instructors";
     }
 }

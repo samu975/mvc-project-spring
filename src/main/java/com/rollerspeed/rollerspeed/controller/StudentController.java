@@ -1,7 +1,8 @@
 package com.rollerspeed.rollerspeed.controller;
 
 import com.rollerspeed.rollerspeed.model.Student;
-import com.rollerspeed.rollerspeed.repository.StudentRepository;
+import com.rollerspeed.rollerspeed.service.StudentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,11 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
     @GetMapping
     public String listStudents(Model model) {
-        List<Student> students = studentRepository.findAll();
+        List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
         return "students/list";
     }
@@ -31,13 +32,13 @@ public class StudentController {
 
     @PostMapping("/register")
     public String registerStudent(@ModelAttribute Student student) {
-        studentRepository.save(student);
+        studentService.saveStudent(student);
         return "redirect:/students";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
-    studentRepository.deleteById(id);
+        studentService.deleteStudent(id);
     return "redirect:/students";
 }
 }
