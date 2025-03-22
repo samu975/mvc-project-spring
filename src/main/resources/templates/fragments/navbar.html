@@ -44,6 +44,13 @@
                             <li><a class="dropdown-item" th:href="@{/students}">Lista de Estudiantes</a></li>
                         </ul>
                     </li>
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="clasesDropDown">Clases</a>
+                        <ul class="dropdown-menu" aria-labelledby="clasesDropDown">
+                            <li><a class="dropdown-item" th:href="@{/clases/nuevo}">Programar Clase</a></li>
+                            <li><a class="dropdown-item" th:href="@{/clases}">Lista de Clases</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -1,6 +1,7 @@
 package com.rollerspeed.rollerspeed.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,5 +23,8 @@ public class Instructor {
     private String telefono;
     private String especialidad;
     private Date fechaNacimiento;
+
+    @OneToMany(mappedBy = "instructor")
+    private List<Clase> clases;
     
 }

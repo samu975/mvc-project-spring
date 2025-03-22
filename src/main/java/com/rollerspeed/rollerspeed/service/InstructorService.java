@@ -20,6 +20,10 @@ public class InstructorService {
         return instructorRepository.save(instructor);
     }
 
+    public Instructor findById(Long id) {
+        return instructorRepository.findById(id).orElse(null);
+    }
+    
     public void deleteInstructor(Long id) {
         instructorRepository.deleteById(id);
     }
