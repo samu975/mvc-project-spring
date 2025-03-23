@@ -23,7 +23,20 @@ public class InstructorService {
     public Instructor findById(Long id) {
         return instructorRepository.findById(id).orElse(null);
     }
-    
+
+    public Instructor updateInstructor(Long id, Instructor instructor) {
+        Instructor existingInstructor = findById(id);
+        if (existingInstructor != null) {
+            existingInstructor.setNombre(instructor.getNombre());
+            existingInstructor.setCorreo(instructor.getCorreo());
+            existingInstructor.setTelefono(instructor.getTelefono());
+            existingInstructor.setEspecialidad(instructor.getEspecialidad());
+            existingInstructor.setFechaNacimiento(instructor.getFechaNacimiento());
+            return instructorRepository.save(existingInstructor);
+        }
+        return null;
+    }
+
     public void deleteInstructor(Long id) {
         instructorRepository.deleteById(id);
     }
