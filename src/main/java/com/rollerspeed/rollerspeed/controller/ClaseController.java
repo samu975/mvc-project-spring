@@ -42,15 +42,13 @@ public class ClaseController {
     @Operation(summary = "Mostrar formulario de clases", description = "Muestra el formulario para crear una nueva clase")
     @GetMapping("/nuevo")
     public String mostrarFormularioClase(Model model) {
-        // Crear una nueva instancia de Clase
+
         Clase clase = new Clase();
         model.addAttribute("clase", clase);
 
-        // Obtener la lista de instructores y estudiantes para el formulario
         List<Instructor> instructores = instructorService.getAllInstructors();
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("instructores", instructores);
-        model.addAttribute("students", students);
 
         return "clases/formulario";
     }
@@ -69,12 +67,26 @@ public class ClaseController {
         model.addAttribute("clase", clase);
 
         // Obtener la lista de instructores y estudiantes para el formulario
-        List<Instructor> instructores = instructorService.getAllInstructors();
-        List<Student> students = studentService.getAllStudents();
+        List<Instructor> instructores = instructorService.getAllInstructors();        
         model.addAttribute("instructores", instructores);
-        model.addAttribute("students", students);
+        
 
-        return "clases/formulario";
+        return "clases/edit";
+    }
+
+    @Operation(summary = "Actualizar una clase existente", description = "Actualiza los datos de una clase en el sistema")
+    @PostMapping("/editar/{id}")
+    public String actualizarClase(@PathVariable Long id, @ModelAttribute("clase") Clase clase) {
+        // Obtener la clase existente
+        Clase claseExistente = claseService.findById(id);
+
+        // Actualizar solo los campos permitidos
+        claseExistente.setHorario(clase.getHorario());
+        claseExistente.setNivel(clase.getNivel());
+        claseExistente.setInstructor(clase.getInstructor());
+
+        claseService.save(claseExistente);
+        return "redirect:/clases";
     }
 
     @Operation(summary = "Eliminar una clase", description = "Elimina una clase del aplicativo")
