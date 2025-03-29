@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/}">Inicio</a>
                     </li>
@@ -30,25 +30,45 @@
                             <li><a class="dropdown-item" th:href="@{/eventos}">Eventos</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="instructorDropDown">Instructores</a>
                         <ul class="dropdown-menu" aria-labelledby="instructorDropDown">
                             <li><a class="dropdown-item" th:href="@{/instructors/register}">Registrar Instructor</a></li>
                             <li><a class="dropdown-item" th:href="@{/instructors}">Lista de instructores</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="studentDropDown">Estudiantes</a>
                         <ul class="dropdown-menu" aria-labelledby="studentDropDown">
                             <li><a class="dropdown-item" th:href="@{/students/register}">Registrar Estudiante</a></li>
                             <li><a class="dropdown-item" th:href="@{/students}">Lista de Estudiantes</a></li>
                         </ul>
                     </li>
-					<li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="clasesDropDown">Clases</a>
                         <ul class="dropdown-menu" aria-labelledby="clasesDropDown">
                             <li><a class="dropdown-item" th:href="@{/clases/nuevo}">Programar Clase</a></li>
                             <li><a class="dropdown-item" th:href="@{/clases}">Lista de Clases</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <!-- Si usuario NO está autenticado, mostrar botón de login -->
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+                    </li>
+                    <!-- Si usuario ESTÁ autenticado, mostrar nombre de usuario y botón de logout -->
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span sec:authentication="name">Usuario</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <form th:action="@{/logout}" method="post" class="dropdown-item">
+                                    <button type="submit" class="btn btn-link p-0 text-decoration-none">Cerrar Sesión</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
