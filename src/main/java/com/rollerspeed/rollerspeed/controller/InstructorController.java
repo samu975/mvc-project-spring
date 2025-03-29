@@ -43,7 +43,25 @@ public class InstructorController {
         return "redirect:/instructors";
     }
 
-    @PostMapping("/delete/{id}")
+    @Operation(summary = "Mostrar formulario de edición", description = "Muestra el formulario para editar un instructor existente")
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Instructor instructor = instructorService.findById(id);
+        if (instructor == null) {
+            return "redirect:/instructors"; 
+        }
+        model.addAttribute("instructor", instructor);
+        return "instructors/edit"; 
+    }
+
+    @Operation(summary = "Actualizar un instructor", description = "Actualiza los datos de un instructor existente")
+    @PostMapping("/edit/{id}")
+    public String updateInstructor(@PathVariable Long id, @ModelAttribute Instructor instructor) {
+        instructorService.updateInstructor(id, instructor);
+        return "redirect:/instructors";
+    }
+
+    @DeleteMapping("/delete/{id}")
     public String deleteInstructor(@PathVariable Long id) {
         instructorService.deleteInstructor(id);
         return "redirect:/instructors";
