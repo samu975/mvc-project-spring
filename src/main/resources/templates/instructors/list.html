@@ -38,6 +38,9 @@
                     <td th:text="${instructor.telefono}"></td>
                     <td th:text="${instructor.especialidad}"></td>
                     <td>
+                        <a th:href="@{/instructors/edit/{id}(id=${instructor.id})}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                         <form th:action="@{/instructors/delete/{id}(id=${instructor.id})}" method="post" style="display:inline;">
                             <input type="hidden" name="_method" value="DELETE"/>
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este instructor?');">Eliminar</button>
