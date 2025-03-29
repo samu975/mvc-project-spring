@@ -36,7 +36,7 @@ public class InstructorController {
         return "redirect:/instructors";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteInstructor(@PathVariable Long id) {
         instructorService.deleteInstructor(id);
         return "redirect:/instructors";
