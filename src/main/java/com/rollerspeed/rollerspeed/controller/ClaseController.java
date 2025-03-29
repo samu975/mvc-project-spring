@@ -10,9 +10,11 @@ import com.rollerspeed.rollerspeed.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +49,7 @@ public class ClaseController {
         model.addAttribute("clase", clase);
 
         List<Instructor> instructores = instructorService.getAllInstructors();
-        List<Student> students = studentService.getAllStudents();
+        /* List<Student> students = studentService.getAllStudents(); */
         model.addAttribute("instructores", instructores);
 
         return "clases/formulario";
@@ -62,28 +64,45 @@ public class ClaseController {
 
     @GetMapping("/editar/{id}")
     public String editarClase(@PathVariable Long id, Model model) {
-        // Obtener la clase por ID
         Clase clase = claseService.findById(id);
-        model.addAttribute("clase", clase);
+        if (clase == null) {
+            return "redirect:/clases";
+        }
 
-        // Obtener la lista de instructores y estudiantes para el formulario
-        List<Instructor> instructores = instructorService.getAllInstructors();        
-        model.addAttribute("instructores", instructores);
-        
+        if (clase.getInstructor() != null) {
+            Hibernate.initialize(clase.getInstructor());
+        }
+
+        model.addAttribute("clase", clase);
+        model.addAttribute("instructores", instructorService.getAllInstructors());
 
         return "clases/edit";
     }
 
     @Operation(summary = "Actualizar una clase existente", description = "Actualiza los datos de una clase en el sistema")
     @PostMapping("/editar/{id}")
-    public String actualizarClase(@PathVariable Long id, @ModelAttribute("clase") Clase clase) {
-        // Obtener la clase existente
-        Clase claseExistente = claseService.findById(id);
+    public String actualizarClase(
+            @PathVariable Long id,
+            @ModelAttribute("clase") Clase clase,
+            @RequestParam("instructor.id") Long instructorId,
+            BindingResult result) {
 
-        // Actualizar solo los campos permitidos
+        if (result.hasErrors()) {
+            return "clases/edit";
+        }
+
+        Clase claseExistente = claseService.findById(id);
+        if (claseExistente == null) {
+            return "redirect:/clases";
+        }
+
+        // Actualizar campos básicos
         claseExistente.setHorario(clase.getHorario());
         claseExistente.setNivel(clase.getNivel());
-        claseExistente.setInstructor(clase.getInstructor());
+
+        // Asignar instructor
+        Instructor instructor = instructorService.findById(instructorId);
+        claseExistente.setInstructor(instructor);
 
         claseService.save(claseExistente);
         return "redirect:/clases";

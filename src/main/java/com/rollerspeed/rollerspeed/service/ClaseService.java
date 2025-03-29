@@ -31,7 +31,7 @@ public class ClaseService {
     public Clase updateClase(Long id, Clase claseDetails) {
         Clase clase = findById(id);
         
-        // Actualizar campos básicos
+        
         clase.setHorario(claseDetails.getHorario());
         clase.setNivel(claseDetails.getNivel());
         clase.setInstructor(claseDetails.getInstructor());

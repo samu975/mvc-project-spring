@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.7.2/css/all.min.css}">
 </head>
-
 <body>
     <!-- Navbar -->
     <div th:replace="fragments/navbar :: body"></div>
@@ -16,12 +14,13 @@
         <h2 class="text-center mb-4">Editar Clase</h2>
         <form th:action="@{/clases/editar/{id}(id=${clase.id})}" method="post" th:object="${clase}">
             <input type="hidden" th:field="*{id}" />
-
-            <!-- Campo Horario -->
+            
+            <!-- Campo Horario - Solución simplificada -->
             <div class="mb-3">
                 <label for="horario" class="form-label">Horario:</label>
-                <input type="datetime-local" class="form-control" id="horario" name="horario"
-       th:value="${clase.horario != null} ? ${clase.horario.toString().replace(' ', 'T')} : ''">
+                <input type="datetime-local" class="form-control" id="horario" 
+                       name="horario"
+                       th:value="${clase.horario != null} ? ${#temporals.format(clase.horario, 'yyyy-MM-dd') + 'T' + #temporals.format(clase.horario, 'HH:mm')} : ''">
             </div>
 
             <!-- Campo Nivel -->
@@ -36,12 +35,14 @@
                 </select>
             </div>
 
-            <!-- Campo Instructor -->
+            <!-- Campo Instructor - Versión simplificada -->
             <div class="mb-3">
                 <label for="instructor" class="form-label">Instructor:</label>
-                <select th:field="*{instructor}" class="form-select" id="instructor">
-                    <option th:each="instructor : ${instructores}" th:value="${instructor}"
-                        th:text="${instructor.nombre}" th:selected="${instructor.id == clase.instructor.id}"></option>
+                <select class="form-select" id="instructor" name="instructor.id">
+                    <option th:each="instructor : ${instructores}" 
+                            th:value="${instructor.id}" 
+                            th:text="${instructor.nombre}"
+                            th:selected="${instructor.id == clase.instructor?.id}"></option>
                 </select>
             </div>
 
@@ -54,5 +55,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
