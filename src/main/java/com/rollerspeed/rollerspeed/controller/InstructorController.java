@@ -61,6 +61,7 @@ public class InstructorController {
         return "redirect:/instructors";
     }
 
+    @Operation(summary = "Eliminar un instructor", description = "Elimina un instructor existente")
     @DeleteMapping("/delete/{id}")
     public String deleteInstructor(@PathVariable Long id) {
         instructorService.deleteInstructor(id);

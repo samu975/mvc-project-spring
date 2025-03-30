@@ -1,5 +1,6 @@
 package com.rollerspeed.rollerspeed.controller;
 
+import com.rollerspeed.rollerspeed.model.Instructor;
 import com.rollerspeed.rollerspeed.model.Student;
 import com.rollerspeed.rollerspeed.service.StudentService;
 
@@ -48,6 +49,25 @@ public class StudentController {
         studentService.saveStudent(student);
         return "redirect:/students";
     }
+
+        @Operation(summary = "Mostrar formulario de edición", description = "Muestra el formulario para editar un estudiante existente")
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Student student = studentService.findById(id);
+        if (student == null) {
+            return "redirect:/students"; 
+        }
+        model.addAttribute("student", student);
+        return "students/edit"; 
+    }
+
+    @Operation(summary = "Actualizar un student", description = "Actualiza los datos de un student existente")
+    @PostMapping("/edit/{id}")
+    public String updateStudent(@PathVariable Long id, @ModelAttribute Student student) {
+        studentService.updateStudent(id, student);
+        return "redirect:/students";
+    }
+
     @Operation(summary = "Eliminar un estudiante", description = "Eliminar un estudiante del sistema")
     @DeleteMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {

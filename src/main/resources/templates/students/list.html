@@ -34,6 +34,9 @@
                     <td th:text="${student.metodoPago}"></td>
                     <td th:text="${student.fechaNacimiento}"></td>
                     <td>
+                        <a th:href="@{/student/edit/{id}(id=${student.id})}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                       <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este estudiante?');">Eliminar</button>
