@@ -2,6 +2,9 @@ package com.rollerspeed.rollerspeed.controller;
 
 import com.rollerspeed.rollerspeed.model.Student;
 import com.rollerspeed.rollerspeed.service.StudentService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,7 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-
+@Operation(summary = "Obtener todas las clases", description = "Retorna una lista de todos las clases")
     @GetMapping
     public String listStudents(Model model) {
         List<Student> students = studentService.getAllStudents();
