@@ -4,7 +4,10 @@ import com.rollerspeed.rollerspeed.model.Student;
 import com.rollerspeed.rollerspeed.service.StudentService;
 
 import io.swagger.v3.oas.annotations.Operation;
+
+
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,11 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+
+
+
     @Operation(summary = "Obtener todos los estudiantes", description = "Retorna una lista de todos los estudiantes")
+
     @GetMapping
     public String listStudents(Model model) {
         List<Student> students = studentService.getAllStudents();

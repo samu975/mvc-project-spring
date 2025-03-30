@@ -32,10 +32,14 @@
                     <td th:text="${clase.nivel}"></td>
                     <td th:text="${clase.instructor.nombre}"></td>
                     <td>
+                        <a th:href="@{/clases/editar/{id}(id=${clase.id})}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                         <form th:action="@{/clases/delete/{id}(id=${clase.id})}" method="post" style="display:inline;">
-                          <input type="hidden" name="_method" value="DELETE"/>
-                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta clase?');">Eliminar</button>
-                      </form>
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Seguro que deseas eliminar esta clase?');">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
